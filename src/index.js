@@ -4,26 +4,7 @@ import Ellipsis from './images/elipsis.png';
 import Trash from './images/trash_1.png';
 
 const tasks = [
-  {
-    description: 'Double-tap to edit',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Drag \'n drop to reorder your list',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'Manage all your lists in one place',
-    completed: true,
-    index: 3,
-  },
-  {
-    description: 'Resync to clear out the old',
-    completed: true,
-    index: 4,
-  },
+    
 ];
 
 function checkmark(e) {
