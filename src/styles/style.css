@@ -1,0 +1,188 @@
+body {
+  background-color: #f6f6f6;
+}
+
+.g-font {
+  font-family: 'Open Sans', sans-serif;
+  color: #545862;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+h1 {
+  padding: 3rem 0;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #222;
+  text-align: center;
+}
+
+.app-container {
+  width: 60%;
+  margin: 0 auto 3rem auto;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.disp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.btn-border {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  line-height: 20px;
+  padding-left: 1rem;
+}
+
+.img-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+}
+
+.img-btn:hover {
+  cursor: pointer;
+}
+
+.img-size {
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+}
+
+.img-size:hover {
+  opacity: 0.7;
+}
+
+.add-task {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-style: italic;
+  line-height: 50px;
+  width: calc(100% - 40px);
+  padding: 0 0 0 1rem;
+}
+
+.add-task::placeholder {
+  opacity: 0.5;
+}
+
+.img-add {
+  width: 40px;
+  opacity: 0.2;
+}
+
+.disp-task {
+  justify-content: flex-start;
+}
+
+.checkbox {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border: 2px solid #c1c1c3;
+  margin: 0 1rem;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.checkbox:hover {
+  border-color: #a1a1a3;
+  cursor: pointer;
+}
+
+.task {
+  outline: none;
+  border: none;
+  background: transparent;
+  line-height: 20px;
+  height: 20px;
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.img-task-btn {
+  margin-left: auto;
+  width: 30px;
+  cursor: move;
+}
+
+.img-task-btn:hover {
+  cursor: move;
+}
+
+.img-task {
+  opacity: 0.2;
+}
+
+.img-task:hover {
+  opacity: 0.6;
+}
+
+.clear-sec {
+  background-color: #f6f6f6;
+  justify-content: center;
+}
+
+.clear-btn {
+  border: none;
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.clear-btn:hover {
+  text-decoration: underline;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.checkmark {
+  text-align: center;
+  font-size: 20px;
+  border: none;
+  color: #2e8ae6;
+  padding: 0;
+  line-height: 0;
+}
+
+.crossed {
+  opacity: 0.5;
+  text-decoration: line-through;
+  text-decoration-color: rgba(0, 0, 0, 1);
+}
+
+.task-bg-color {
+  background-color: #fffeca;
+  transition: background-color 0.5s ease;
+}
+
+.uncrossed {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.trash {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+
+.trash:hover {
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity 200ms ease-in-out;
+}
