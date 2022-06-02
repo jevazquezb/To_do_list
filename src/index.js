@@ -7,23 +7,23 @@ const tasks = [
   {
     description: 'Double-tap to edit',
     completed: true,
-    index: 1
+    index: 1,
   },
   {
     description: 'Drag \'n drop to reorder your list',
     completed: true,
-    index: 2
+    index: 2,
   },
   {
     description: 'Manage all your lists in one place',
     completed: true,
-    index: 3
+    index: 3,
   },
   {
     description: 'Resync to clear out the old',
     completed: true,
-    index: 4
-  }
+    index: 4,
+  },
 ];
 
 function checkmark(e) {
@@ -65,19 +65,18 @@ function exitTask(e) {
   imgTask.classList.remove('trash');
 }
 
-
 function displayTask(task) {
   const ulist = document.querySelector('ul');
 
   const taskItem = document.createElement('li');
   taskItem.classList.add('disp', 'disp-task', 'btn-border');
-  taskItem.id = 'main' + task.index; 
+  taskItem.id = `main${task.index}`;
 
   const checkbox = document.createElement('button');
   checkbox.classList.add('checkbox');
   checkbox.title = 'Check!';
   checkbox.alt = 'Check!';
-  checkbox.id = 'check' + task.index;
+  checkbox.id = `check${task.index}`;
   checkbox.addEventListener('click', checkmark);
   taskItem.appendChild(checkbox);
 
@@ -85,7 +84,7 @@ function displayTask(task) {
   taskMsg.classList.add('g-font', 'task');
   taskMsg.type = 'text';
   taskMsg.maxLength = '255';
-  taskMsg.id = 'desc' + task.index;
+  taskMsg.id = `desc${task.index}`;
   taskMsg.value = task.description;
   taskMsg.addEventListener('focusin', enterTask);
   taskMsg.addEventListener('focusout', exitTask);
@@ -96,13 +95,13 @@ function displayTask(task) {
 
   const imgTask = document.createElement('img');
   imgTask.classList.add('img-size', 'img-task');
-  imgTask.alt = "Vertical ellipses: Move the task up or down";
+  imgTask.alt = 'Vertical ellipses: Move the task up or down';
   imgTask.src = Ellipsis;
-  imgTask.id = 'img' + task.index;
+  imgTask.id = `img${task.index}`;
   ellipsisBtn.appendChild(imgTask);
   taskItem.appendChild(ellipsisBtn);
 
   ulist.appendChild(taskItem);
 }
 
-tasks.forEach(task => displayTask(task));
+tasks.forEach((task) => displayTask(task));
