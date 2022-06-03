@@ -2,29 +2,11 @@ import './styles/reset.css';
 import './styles/style.css';
 import Ellipsis from './images/elipsis.png';
 import Trash from './images/trash_1.png';
+import storageAvailable from './modules/storage_available.js';
+import * as taskManager from './modules/task_manager.js';
 
-const tasks = [
-  {
-    description: 'Double-tap to edit',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Drag \'n drop to reorder your list',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'Manage all your lists in one place',
-    completed: true,
-    index: 3,
-  },
-  {
-    description: 'Resync to clear out the old',
-    completed: true,
-    index: 4,
-  },
-];
+const form = document.querySelector('form');
+const input = document.querySelector('#text');
 
 function checkmark(e) {
   const tmpIndex = e.target.id.slice(5);
@@ -48,9 +30,11 @@ function enterTask(e) {
   const taskItem = document.querySelector(`#main${tmpIndex}`);
   taskItem.classList.add('task-bg-color');
 
-  const imgTask = document.querySelector(`#img${tmpIndex}`);
-  imgTask.src = Trash;
-  imgTask.classList.add('trash');
+  const ellipsisBtn = document.querySelector(`#ell${tmpIndex}`);
+  ellipsisBtn.style.display = 'none';
+
+  const trashBtn = document.querySelector(`#trabtn${tmpIndex}`);
+  trashBtn.style.display = 'flex';
 }
 
 function exitTask(e) {
@@ -60,9 +44,11 @@ function exitTask(e) {
   const taskItem = document.querySelector(`#main${tmpIndex}`);
   taskItem.classList.remove('task-bg-color');
 
-  const imgTask = document.querySelector(`#img${tmpIndex}`);
-  imgTask.src = Ellipsis;
-  imgTask.classList.remove('trash');
+  const ellipsisBtn = document.querySelector(`#ell${tmpIndex}`);
+  ellipsisBtn.style.display = 'flex';
+
+  const trashBtn = document.querySelector(`#trabtn${tmpIndex}`);
+  trashBtn.style.display = 'none';
 }
 
 function displayTask(task) {
@@ -76,6 +62,7 @@ function displayTask(task) {
   checkbox.classList.add('checkbox');
   checkbox.title = 'Check!';
   checkbox.alt = 'Check!';
+  checkbox.type = 'button';
   checkbox.id = `check${task.index}`;
   checkbox.addEventListener('click', checkmark);
   taskItem.appendChild(checkbox);
@@ -86,12 +73,16 @@ function displayTask(task) {
   taskMsg.maxLength = '255';
   taskMsg.id = `desc${task.index}`;
   taskMsg.value = task.description;
-  taskMsg.addEventListener('focusin', enterTask);
-  taskMsg.addEventListener('focusout', exitTask);
+  taskMsg.addEventListener('focus', enterTask);
+  taskMsg.addEventListener('blur', exitTask);
+  taskMsg.addEventListener('input', taskManager.editDescription);
   taskItem.appendChild(taskMsg);
 
+  // Vertical ellipsis button
   const ellipsisBtn = document.createElement('button');
   ellipsisBtn.classList.add('img-btn', 'img-task-btn');
+  ellipsisBtn.id = `ell${task.index}`;
+  ellipsisBtn.type = 'button';
 
   const imgTask = document.createElement('img');
   imgTask.classList.add('img-size', 'img-task');
@@ -101,7 +92,41 @@ function displayTask(task) {
   ellipsisBtn.appendChild(imgTask);
   taskItem.appendChild(ellipsisBtn);
 
+  // Trash can button
+  const trashBtn = document.createElement('button');
+  trashBtn.classList.add('img-btn', 'img-trash-btn');
+  trashBtn.id = `trabtn${task.index}`;
+  trashBtn.type = 'button';
+  trashBtn.style.display = 'none';
+
+  const trashImg = document.createElement('img');
+  trashImg.classList.add('trash');
+  trashImg.alt = 'Trash can';
+  trashImg.src = Trash;
+  trashImg.id = `trash${task.index}`;
+  trashImg.addEventListener('mousedown', (e) => {
+    taskManager.removeFromStorage(e);
+    taskManager.removeAllChildElements(ulist);
+    taskManager.getTasks();
+    taskManager.tasksList.forEach((task) => displayTask(task));
+  });
+  trashBtn.appendChild(trashImg);
+  taskItem.appendChild(trashBtn);
+
   ulist.appendChild(taskItem);
 }
 
-tasks.forEach((task) => displayTask(task));
+if (storageAvailable('localStorage')) {
+  window.addEventListener('load', () => {
+    taskManager.getTasks();
+    taskManager.tasksList.forEach((task) => displayTask(task));
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    taskManager.getTasks();
+    const newTask = taskManager.addTask(input.value);
+    taskManager.saveTasks();
+    displayTask(newTask);
+    e.target.reset();
+  });
+}
