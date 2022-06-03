@@ -7,7 +7,6 @@ import * as taskManager from './modules/task_manager.js';
 
 const form = document.querySelector('form');
 const input = document.querySelector('#text');
-let tasksList;
 
 function checkmark(e) {
   const tmpIndex = e.target.id.slice(5);
@@ -109,7 +108,7 @@ function displayTask(task) {
     taskManager.removeFromStorage(e);
     taskManager.removeAllChildElements(ulist);
     taskManager.getTasks();
-    tasksList.forEach((task) => displayTask(task));
+    taskManager.tasksList.forEach((task) => displayTask(task));
   });
   trashBtn.appendChild(trashImg);
   taskItem.appendChild(trashBtn);
@@ -120,7 +119,7 @@ function displayTask(task) {
 if (storageAvailable('localStorage')) {
   window.addEventListener('load', () => {
     taskManager.getTasks();
-    tasksList.forEach((task) => displayTask(task));
+    taskManager.tasksList.forEach((task) => displayTask(task));
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();

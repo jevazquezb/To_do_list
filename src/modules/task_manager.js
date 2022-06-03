@@ -1,9 +1,11 @@
+/* eslint-disable import/no-mutable-exports */
 import Task from './task_class.js';
 
-let tasksList;
+export let tasksList;
 
 export function getTasks() {
   tasksList = JSON.parse(localStorage.getItem('tasksList')) || [];
+  return tasksList;
 }
 
 export function saveTasks(data = tasksList) {
