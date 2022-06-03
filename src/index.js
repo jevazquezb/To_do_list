@@ -3,25 +3,15 @@ import './styles/style.css';
 import Ellipsis from './images/elipsis.png';
 import Trash from './images/trash_1.png';
 import storageAvailable from './modules/storage_available.js';
-import * as taskManager from './modules/task_manager.js';
+import { getTasks, saveTasks } from './modules/local_storage.js';
+import { addTask, removeFromStorage, editDescription } from './modules/task_manager.js';
+import removeAllChildElements from './modules/remove_dom.js';
+import { checkmark, checkAgain, clearAll } from './modules/clear_all.js'
 
 const form = document.querySelector('form');
 const input = document.querySelector('#text');
-
-function checkmark(e) {
-  const tmpIndex = e.target.id.slice(5);
-  const taskMsg = document.querySelector(`#desc${tmpIndex}`);
-
-  if (e.target.textContent === '\u2714') {
-    e.target.classList.remove('checkmark');
-    e.target.textContent = '';
-    taskMsg.classList.remove('crossed');
-  } else {
-    e.target.textContent = '\u2714';
-    e.target.classList.add('checkmark');
-    taskMsg.classList.add('crossed');
-  }
-}
+const ulist = document.querySelector('ul');
+const clear = document.querySelector('#clear');
 
 function enterTask(e) {
   e.target.classList.add('uncrossed');
@@ -52,8 +42,6 @@ function exitTask(e) {
 }
 
 function displayTask(task) {
-  const ulist = document.querySelector('ul');
-
   const taskItem = document.createElement('li');
   taskItem.classList.add('disp', 'disp-task', 'btn-border');
   taskItem.id = `main${task.index}`;
@@ -75,7 +63,7 @@ function displayTask(task) {
   taskMsg.value = task.description;
   taskMsg.addEventListener('focus', enterTask);
   taskMsg.addEventListener('blur', exitTask);
-  taskMsg.addEventListener('input', taskManager.editDescription);
+  taskMsg.addEventListener('input', editDescription);
   taskItem.appendChild(taskMsg);
 
   // Vertical ellipsis button
@@ -105,10 +93,13 @@ function displayTask(task) {
   trashImg.src = Trash;
   trashImg.id = `trash${task.index}`;
   trashImg.addEventListener('mousedown', (e) => {
-    taskManager.removeFromStorage(e);
-    taskManager.removeAllChildElements(ulist);
-    taskManager.getTasks();
-    taskManager.tasksList.forEach((task) => displayTask(task));
+    removeFromStorage(e);
+    removeAllChildElements(ulist);
+    const tasksList = getTasks();
+    tasksList.forEach((task) => {
+      displayTask(task);
+      checkAgain(task);
+    });
   });
   trashBtn.appendChild(trashImg);
   taskItem.appendChild(trashBtn);
@@ -118,15 +109,24 @@ function displayTask(task) {
 
 if (storageAvailable('localStorage')) {
   window.addEventListener('load', () => {
-    taskManager.getTasks();
-    taskManager.tasksList.forEach((task) => displayTask(task));
+    const tasksList = getTasks();
+    tasksList.forEach((task) => {
+      displayTask(task);
+      checkAgain(task);
+    });
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    taskManager.getTasks();
-    const newTask = taskManager.addTask(input.value);
-    taskManager.saveTasks();
+    let tasksList = getTasks(), newTask;
+    [newTask, tasksList] = addTask(input.value, tasksList);
+    saveTasks(tasksList);
     displayTask(newTask);
     e.target.reset();
+  });
+  clear.addEventListener('click', () => {
+    clearAll();
+    removeAllChildElements(ulist);
+    const tasksList = getTasks();
+    tasksList.forEach((task) => displayTask(task));
   });
 }
