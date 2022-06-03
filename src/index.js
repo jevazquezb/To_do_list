@@ -6,7 +6,7 @@ import storageAvailable from './modules/storage_available.js';
 import { getTasks, saveTasks } from './modules/local_storage.js';
 import { addTask, removeFromStorage, editDescription } from './modules/task_manager.js';
 import removeAllChildElements from './modules/remove_dom.js';
-import { checkmark, checkAgain, clearAll } from './modules/clear_all.js'
+import { checkmark, checkAgain, clearAll } from './modules/clear_all.js';
 
 const form = document.querySelector('form');
 const input = document.querySelector('#text');
@@ -117,9 +117,9 @@ if (storageAvailable('localStorage')) {
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let tasksList = getTasks(), newTask;
-    [newTask, tasksList] = addTask(input.value, tasksList);
-    saveTasks(tasksList);
+    const tasksList = getTasks();
+    const [newTask, newTasksList] = addTask(input.value, tasksList);
+    saveTasks(newTasksList);
     displayTask(newTask);
     e.target.reset();
   });
