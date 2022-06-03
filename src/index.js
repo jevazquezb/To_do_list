@@ -7,6 +7,7 @@ import * as taskManager from './modules/task_manager.js';
 
 const form = document.querySelector('form');
 const input = document.querySelector('#text');
+let tasksList;
 
 function checkmark(e) {
   const tmpIndex = e.target.id.slice(5);
@@ -37,7 +38,7 @@ function enterTask(e) {
   trashBtn.style.display = 'flex';
 }
 
-function exitTask(e) {  
+function exitTask(e) {
   e.target.classList.remove('uncrossed');
 
   const tmpIndex = e.target.id.slice(4);
@@ -78,7 +79,7 @@ function displayTask(task) {
   taskMsg.addEventListener('input', taskManager.editDescription);
   taskItem.appendChild(taskMsg);
 
-  //Vertical ellipsis button
+  // Vertical ellipsis button
   const ellipsisBtn = document.createElement('button');
   ellipsisBtn.classList.add('img-btn', 'img-task-btn');
   ellipsisBtn.id = `ell${task.index}`;
@@ -92,7 +93,7 @@ function displayTask(task) {
   ellipsisBtn.appendChild(imgTask);
   taskItem.appendChild(ellipsisBtn);
 
-  //Trash can button
+  // Trash can button
   const trashBtn = document.createElement('button');
   trashBtn.classList.add('img-btn', 'img-trash-btn');
   trashBtn.id = `trabtn${task.index}`;
@@ -105,10 +106,10 @@ function displayTask(task) {
   trashImg.src = Trash;
   trashImg.id = `trash${task.index}`;
   trashImg.addEventListener('mousedown', (e) => {
-    taskManager.removeFromStorage(e);  
+    taskManager.removeFromStorage(e);
     taskManager.removeAllChildElements(ulist);
     taskManager.getTasks();
-    taskManager.tasksList.forEach((task) => displayTask(task));
+    tasksList.forEach((task) => displayTask(task));
   });
   trashBtn.appendChild(trashImg);
   taskItem.appendChild(trashBtn);
@@ -119,7 +120,7 @@ function displayTask(task) {
 if (storageAvailable('localStorage')) {
   window.addEventListener('load', () => {
     taskManager.getTasks();
-    taskManager.tasksList.forEach((task) => displayTask(task));
+    tasksList.forEach((task) => displayTask(task));
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
