@@ -2,7 +2,7 @@
 
 # To do list: list structure
 
-> In this project, we built a simple HTML list of To Do tasks. This simple web page was created using webpack and served by a webpack dev server.
+> In this project, we you implemented the CRUD (create, update, delete) methods. This simple web page was created using webpack and served by a webpack dev server.
 
 ## Built With
 
