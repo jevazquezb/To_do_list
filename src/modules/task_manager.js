@@ -1,26 +1,15 @@
-/* eslint-disable import/no-mutable-exports */
+import { getTasks, saveTasks } from './local_storage.js';
 import Task from './task_class.js';
 
-export let tasksList;
-
-export function getTasks() {
-  tasksList = JSON.parse(localStorage.getItem('tasksList')) || [];
-  return tasksList;
-}
-
-export function saveTasks(data = tasksList) {
-  localStorage.setItem('tasksList', JSON.stringify(data));
-}
-
-export function addTask(description) {
-  const taskId = tasksList.length + 1;
+function addTask(description, list) {
+  const taskId = list.length + 1;
   const newTask = new Task(description, taskId);
-  tasksList.push(newTask);
-  return newTask;
+  list.push(newTask);
+  return [newTask, list];
 }
 
-export function removeFromStorage(e) {
-  getTasks();
+function removeFromStorage(e) {
+  const tasksList = getTasks();
   const taskId = +e.target.id.slice(5);
   const filteredTasks = tasksList.filter((task) => task.index !== taskId);
   for (let i = 0; i < filteredTasks.length; i += 1) {
@@ -29,19 +18,15 @@ export function removeFromStorage(e) {
   saveTasks(filteredTasks);
 }
 
-export function removeAllChildElements(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-}
-
-export function editDescription(e) {
-  getTasks();
+function editDescription(e) {
+  const tasksList = getTasks();
   const taskId = +e.target.id.slice(4);
   tasksList.forEach((task) => {
     if (taskId === task.index) {
       task.description = e.target.value;
     }
   });
-  saveTasks();
+  saveTasks(tasksList);
 }
+
+export { addTask, removeFromStorage, editDescription };
