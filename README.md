@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To do list: list structure
+# To do list
 
 > In this project, we built a simple HTML list of To Do tasks. This simple web page was created using webpack and served by a webpack dev server.
 
