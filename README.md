@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-(Not available)
+[Live Demo Link](https://jevazquezb.github.io/To_do_list/)
 
 ## Getting Started
 
