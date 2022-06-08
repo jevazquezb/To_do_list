@@ -93,9 +93,12 @@ function displayTask(task) {
   trashImg.src = Trash;
   trashImg.id = `trash${task.index}`;
   trashImg.addEventListener('mousedown', (e) => {
-    removeFromStorage(e);
+    let tasksList = getTasks();
+    const taskId = +e.target.id.slice(5); 
+    const tempList = removeFromStorage(taskId, tasksList);
+    saveTasks(tempList);
     removeAllChildElements(ulist);
-    const tasksList = getTasks();
+    tasksList = getTasks();
     tasksList.forEach((task) => {
       displayTask(task);
       checkAgain(task);
