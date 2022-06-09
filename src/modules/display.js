@@ -18,7 +18,7 @@ function enterTask(e) {
   const trashBtn = document.querySelector(`#trabtn${tmpIndex}`);
   trashBtn.style.display = 'flex';
 }
-  
+
 function exitTask(e) {
   e.target.classList.remove('uncrossed');
 
@@ -32,7 +32,7 @@ function exitTask(e) {
   const trashBtn = document.querySelector(`#trabtn${tmpIndex}`);
   trashBtn.style.display = 'none';
 }
-  
+
 function displayTask(task) {
   const ulist = document.querySelector('ul');
 

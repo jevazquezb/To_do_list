@@ -51,11 +51,10 @@ describe('Remove function test', () => {
 
 describe('Add list elements to the DOM', () => {
   test('Add one new item to the list', () => {
-    document.body.innerHTML =
-    '<div>' +
-    '  <ul></ul>' +
-    '</div>';
-    const newTask = {description: 'First message', index: 1, completed: false};
+    document.body.innerHTML = '<div>'
+    + '  <ul></ul>'
+    + '</div>';
+    const newTask = { description: 'First message', index: 1, completed: false };
 
     displayTask(newTask);
 
@@ -64,11 +63,10 @@ describe('Add list elements to the DOM', () => {
     expect(items).toHaveLength(1);
   });
   test('Add two new items to the list', () => {
-    document.body.innerHTML =
-    '<div>' +
-    '  <ul></ul>' +
-    '</div>';
-    const newTask = {description: 'First message', index: 1, completed: false};
+    document.body.innerHTML = '<div>'
+    + '  <ul></ul>'
+    + '</div>';
+    const newTask = { description: 'First message', index: 1, completed: false };
 
     displayTask(newTask);
     displayTask(newTask);
@@ -78,11 +76,10 @@ describe('Add list elements to the DOM', () => {
     expect(items).toHaveLength(2);
   });
   test('Add three new items to the list', () => {
-    document.body.innerHTML =
-    '<div>' +
-    '  <ul></ul>' +
-    '</div>';
-    const newTask = {description: 'First message', index: 1, completed: false};
+    document.body.innerHTML = '<div>'
+    + '  <ul></ul>'
+    + '</div>';
+    const newTask = { description: 'First message', index: 1, completed: false };
 
     displayTask(newTask);
     displayTask(newTask);
@@ -91,25 +88,24 @@ describe('Add list elements to the DOM', () => {
     const items = document.querySelectorAll('ul li');
 
     expect(items).toHaveLength(3);
-  }); 
+  });
 });
 
 describe('Remove list elements from the DOM', () => {
   test('Remove the only item from the list', () => {
-    document.body.innerHTML =
-    `<div>
+    document.body.innerHTML = `<div>
        <ul>
          <li></li>
        </ul>
      </div>`;
-    
+
     const uList = document.querySelector('ul');
     const items = document.querySelectorAll('ul li');
     removeAllChildElements(uList);
     const trimmedList = items.length - 1;
-    const newTask = {description: 'First message', index: 1, completed: false};
-    
-    for (let i = 0; i < trimmedList; i+=1) {
+    const newTask = { description: 'First message', index: 1, completed: false };
+
+    for (let i = 0; i < trimmedList; i += 1) {
       displayTask(newTask);
     }
 
@@ -118,52 +114,48 @@ describe('Remove list elements from the DOM', () => {
     expect(newItems).toHaveLength(0);
   });
   test('Remove one item from a list of two items', () => {
-    document.body.innerHTML =
-    `<div>
+    document.body.innerHTML = `<div>
        <ul>
          <li></li>
          <li></li>
        </ul>
      </div>`;
-    
+
     const uList = document.querySelector('ul');
     const items = document.querySelectorAll('ul li');
     removeAllChildElements(uList);
     const trimmedList = items.length - 1;
-    const newTask = {description: 'First message', index: 1, completed: false};
-    
-    for (let i = 0; i < trimmedList; i+=1) {
+    const newTask = { description: 'First message', index: 1, completed: false };
+
+    for (let i = 0; i < trimmedList; i += 1) {
       displayTask(newTask);
     }
 
     const newItems = document.querySelectorAll('ul li');
 
     expect(newItems).toHaveLength(1);
-  }); 
+  });
   test('Remove one item from a list of three items', () => {
-    document.body.innerHTML =
-    `<div>
+    document.body.innerHTML = `<div>
        <ul>
          <li></li>
          <li></li>
          <li></li>
        </ul>
      </div>`;
-    
+
     const uList = document.querySelector('ul');
     const items = document.querySelectorAll('ul li');
     removeAllChildElements(uList);
     const trimmedList = items.length - 1;
-    const newTask = {description: 'First message', index: 1, completed: false};
-    
-    for (let i = 0; i < trimmedList; i+=1) {
+    const newTask = { description: 'First message', index: 1, completed: false };
+
+    for (let i = 0; i < trimmedList; i += 1) {
       displayTask(newTask);
     }
 
     const newItems = document.querySelectorAll('ul li');
 
     expect(newItems).toHaveLength(2);
-  }); 
+  });
 });
-
-

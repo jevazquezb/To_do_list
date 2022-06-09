@@ -5,7 +5,7 @@ import { getTasks, saveTasks } from './modules/local_storage.js';
 import { addTask, removeFromStorage } from './modules/task_manager.js';
 import removeAllChildElements from './modules/remove_dom.js';
 import { checkAgain } from './modules/checkmark.js';
-import displayTask from './modules/display.js'
+import displayTask from './modules/display.js';
 
 const form = document.querySelector('form');
 const input = document.querySelector('#text');
