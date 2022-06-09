@@ -5,7 +5,6 @@ import {
   updatePropertyValue,
   removeFromStorage,
 } from '../src/modules/task_manager.js';
-// import removeAllChildElements from '../src/modules/remove_dom.js';
 
 describe('Editing function tests', () => {
   test('Change the value of the description property', () => {
