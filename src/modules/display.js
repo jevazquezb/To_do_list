@@ -1,7 +1,7 @@
 import Ellipsis from '../images/elipsis.png';
 import Trash from '../images/trash_1.png';
 import { checkmark, checkAgain } from './checkmark.js';
-import { removeFromStorage, editDescription } from './task_manager.js';
+import { removeFromStorage, updatePropertyValue } from './task_manager.js';
 import { getTasks, saveTasks } from './local_storage.js';
 import removeAllChildElements from './remove_dom.js';
 
@@ -57,7 +57,13 @@ function displayTask(task) {
   taskMsg.value = task.description;
   taskMsg.addEventListener('focus', enterTask);
   taskMsg.addEventListener('blur', exitTask);
-  taskMsg.addEventListener('input', editDescription);
+  taskMsg.addEventListener('input', (e) => {
+    const tasksList = getTasks();
+    const taskId = +e.target.id.slice(4);
+    const description = e.target.value;
+    const updatedList = updatePropertyValue(tasksList, taskId, 'description', description);
+    saveTasks(updatedList);
+  });
   taskItem.appendChild(taskMsg);
 
   // Vertical ellipsis button

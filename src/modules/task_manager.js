@@ -16,15 +16,13 @@ function removeFromStorage(tasksList, key, value) {
   return filteredTasks;
 }
 
-function editDescription(e) {
-  const tasksList = getTasks();
-  const taskId = +e.target.id.slice(4);
+function updatePropertyValue(tasksList, index, key, value) {
   tasksList.forEach((task) => {
-    if (taskId === task.index) {
-      task.description = e.target.value;
+    if (index === task.index) {
+      task[key] = value;
     }
   });
-  saveTasks(tasksList);
+  return tasksList;
 }
 
-export { addTask, removeFromStorage, editDescription };
+export { addTask, removeFromStorage, updatePropertyValue };
