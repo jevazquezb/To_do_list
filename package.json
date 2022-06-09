@@ -44,5 +44,11 @@
   "dependencies": {
     "gh-pages": "^4.0.0",
     "lodash": "^4.17.21"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }

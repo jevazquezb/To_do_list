@@ -8,8 +8,8 @@ function addTask(description, list) {
   return [newTask, list];
 }
 
-function removeFromStorage(taskId, tasksList) {
-  const filteredTasks = tasksList.filter((task) => task.index !== taskId);
+function removeFromStorage(tasksList, key, value) {
+  const filteredTasks = tasksList.filter((task) => task[key] !== value);
   for (let i = 0; i < filteredTasks.length; i += 1) {
     filteredTasks[i].index = i + 1;
   }
