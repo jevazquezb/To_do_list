@@ -1,4 +1,3 @@
-import { getTasks, saveTasks } from './local_storage.js';
 import Task from './task_class.js';
 
 function addTask(description, list) {
@@ -8,25 +7,21 @@ function addTask(description, list) {
   return [newTask, list];
 }
 
-function removeFromStorage(e) {
-  const tasksList = getTasks();
-  const taskId = +e.target.id.slice(5);
-  const filteredTasks = tasksList.filter((task) => task.index !== taskId);
+function removeFromStorage(tasksList, key, value) {
+  const filteredTasks = tasksList.filter((task) => task[key] !== value);
   for (let i = 0; i < filteredTasks.length; i += 1) {
     filteredTasks[i].index = i + 1;
   }
-  saveTasks(filteredTasks);
+  return filteredTasks;
 }
 
-function editDescription(e) {
-  const tasksList = getTasks();
-  const taskId = +e.target.id.slice(4);
+function updatePropertyValue(tasksList, index, key, value) {
   tasksList.forEach((task) => {
-    if (taskId === task.index) {
-      task.description = e.target.value;
+    if (index === task.index) {
+      task[key] = value;
     }
   });
-  saveTasks(tasksList);
+  return tasksList;
 }
 
-export { addTask, removeFromStorage, editDescription };
+export { addTask, removeFromStorage, updatePropertyValue };
