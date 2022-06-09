@@ -51,10 +51,12 @@ describe('Remove function test', () => {
 
 describe('Add list elements to the DOM', () => {
   test('Add one new item to the list', () => {
-    document.body.innerHTML = '<div>'
-    + '  <ul></ul>'
-    + '</div>';
-    const newTask = { description: 'First message', index: 1, completed: false };
+    document.body.innerHTML = '<div><ul></ul></div>';
+    const newTask = {
+      description: 'First message',
+      index: 1,
+      completed: false,
+    };
 
     displayTask(newTask);
 
@@ -63,10 +65,12 @@ describe('Add list elements to the DOM', () => {
     expect(items).toHaveLength(1);
   });
   test('Add two new items to the list', () => {
-    document.body.innerHTML = '<div>'
-    + '  <ul></ul>'
-    + '</div>';
-    const newTask = { description: 'First message', index: 1, completed: false };
+    document.body.innerHTML = '<div><ul></ul></div>';
+    const newTask = {
+      description: 'First message',
+      index: 1,
+      completed: false,
+    };
 
     displayTask(newTask);
     displayTask(newTask);
@@ -76,10 +80,12 @@ describe('Add list elements to the DOM', () => {
     expect(items).toHaveLength(2);
   });
   test('Add three new items to the list', () => {
-    document.body.innerHTML = '<div>'
-    + '  <ul></ul>'
-    + '</div>';
-    const newTask = { description: 'First message', index: 1, completed: false };
+    document.body.innerHTML = '<div><ul></ul></div>';
+    const newTask = {
+      description: 'First message',
+      index: 1,
+      completed: false,
+    };
 
     displayTask(newTask);
     displayTask(newTask);
@@ -103,7 +109,11 @@ describe('Remove list elements from the DOM', () => {
     const items = document.querySelectorAll('ul li');
     removeAllChildElements(uList);
     const trimmedList = items.length - 1;
-    const newTask = { description: 'First message', index: 1, completed: false };
+    const newTask = {
+      description: 'First message',
+      index: 1,
+      completed: false,
+    };
 
     for (let i = 0; i < trimmedList; i += 1) {
       displayTask(newTask);
@@ -126,7 +136,11 @@ describe('Remove list elements from the DOM', () => {
     const items = document.querySelectorAll('ul li');
     removeAllChildElements(uList);
     const trimmedList = items.length - 1;
-    const newTask = { description: 'First message', index: 1, completed: false };
+    const newTask = {
+      description: 'First message',
+      index: 1,
+      completed: false,
+    };
 
     for (let i = 0; i < trimmedList; i += 1) {
       displayTask(newTask);
@@ -150,7 +164,11 @@ describe('Remove list elements from the DOM', () => {
     const items = document.querySelectorAll('ul li');
     removeAllChildElements(uList);
     const trimmedList = items.length - 1;
-    const newTask = { description: 'First message', index: 1, completed: false };
+    const newTask = {
+      description: 'First message',
+      index: 1,
+      completed: false,
+    };
 
     for (let i = 0; i < trimmedList; i += 1) {
       displayTask(newTask);

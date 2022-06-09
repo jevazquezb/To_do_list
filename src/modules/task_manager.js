@@ -1,4 +1,3 @@
-import { getTasks, saveTasks } from './local_storage.js';
 import Task from './task_class.js';
 
 function addTask(description, list) {

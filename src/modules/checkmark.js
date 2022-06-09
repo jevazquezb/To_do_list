@@ -10,7 +10,7 @@ function checkmark(e) {
     e.target.textContent = '\u2714';
     e.target.classList.add('checkmark');
     taskMsg.classList.add('crossed');
-    status = true;    
+    status = true;
   } else {
     e.target.classList.remove('checkmark');
     e.target.textContent = '';
