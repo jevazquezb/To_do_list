@@ -14,7 +14,6 @@ function removeFromStorage(taskId, tasksList) {
     filteredTasks[i].index = i + 1;
   }
   return filteredTasks;
- /*  saveTasks(filteredTasks); */
 }
 
 function editDescription(e) {

@@ -4,7 +4,11 @@ import Ellipsis from './images/elipsis.png';
 import Trash from './images/trash_1.png';
 import storageAvailable from './modules/storage_available.js';
 import { getTasks, saveTasks } from './modules/local_storage.js';
-import { addTask, removeFromStorage, editDescription } from './modules/task_manager.js';
+import {
+  addTask,
+  removeFromStorage,
+  editDescription,
+} from './modules/task_manager.js';
 import removeAllChildElements from './modules/remove_dom.js';
 import { checkmark, checkAgain, clearAll } from './modules/clear_all.js';
 
@@ -94,7 +98,7 @@ function displayTask(task) {
   trashImg.id = `trash${task.index}`;
   trashImg.addEventListener('mousedown', (e) => {
     let tasksList = getTasks();
-    const taskId = +e.target.id.slice(5); 
+    const taskId = +e.target.id.slice(5);
     const tempList = removeFromStorage(taskId, tasksList);
     saveTasks(tempList);
     removeAllChildElements(ulist);
@@ -108,6 +112,9 @@ function displayTask(task) {
   taskItem.appendChild(trashBtn);
 
   ulist.appendChild(taskItem);
+
+  // here
+  return taskItem;
 }
 
 if (storageAvailable('localStorage')) {
@@ -133,3 +140,5 @@ if (storageAvailable('localStorage')) {
     tasksList.forEach((task) => displayTask(task));
   });
 }
+
+// export { displayTask };
