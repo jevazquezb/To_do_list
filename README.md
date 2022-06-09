@@ -18,6 +18,13 @@
 
 To get a local copy up and running follow these simple example steps.
 
+## Testing
+To test the code follow these guide
+
+  - Install all dependencies with `npm install` 
+  - `npm run test` 
+
+
 ### Prerequisites
 
     NodeJS

@@ -113,6 +113,7 @@ describe('Remove list elements from the DOM', () => {
 
     expect(newItems).toHaveLength(0);
   });
+
   test('Remove one item from a list of two items', () => {
     document.body.innerHTML = `<div>
        <ul>
@@ -135,6 +136,7 @@ describe('Remove list elements from the DOM', () => {
 
     expect(newItems).toHaveLength(1);
   });
+
   test('Remove one item from a list of three items', () => {
     document.body.innerHTML = `<div>
        <ul>
