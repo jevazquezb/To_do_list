@@ -8,14 +8,12 @@ function addTask(description, list) {
   return [newTask, list];
 }
 
-function removeFromStorage(e) {
-  const tasksList = getTasks();
-  const taskId = +e.target.id.slice(5);
-  const filteredTasks = tasksList.filter((task) => task.index !== taskId);
+function removeFromStorage(tasksList, key, value) {
+  const filteredTasks = tasksList.filter((task) => task[key] !== value);
   for (let i = 0; i < filteredTasks.length; i += 1) {
     filteredTasks[i].index = i + 1;
   }
-  saveTasks(filteredTasks);
+  return filteredTasks;
 }
 
 function editDescription(e) {

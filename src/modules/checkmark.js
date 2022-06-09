@@ -38,13 +38,4 @@ function checkAgain(task) {
   }
 }
 
-function clearAll() {
-  const tasksList = getTasks();
-  const filteredTasks = tasksList.filter((task) => task.completed === false);
-  for (let i = 0; i < filteredTasks.length; i += 1) {
-    filteredTasks[i].index = i + 1;
-  }
-  saveTasks(filteredTasks);
-}
-
-export { checkmark, checkAgain, clearAll };
+export { checkmark, checkAgain };
