@@ -40,7 +40,7 @@ To test the code follow these guide
 
 ### Usage
 
-    npm run dev
+    npm start
 
 ### Done!
 
